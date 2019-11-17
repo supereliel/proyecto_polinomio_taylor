@@ -7,6 +7,9 @@ Cada participante debe completar su módulo y luego solicitar el Pull-Request.
 
 import math
 
+def f(x):
+    return math.sin(x)
+
 
 def derivada(f, h = 0.01):
     """
@@ -32,10 +35,28 @@ def polinomio_taylor(f, x0, n):
     x0: punto centro del polinomio.
     n: grado del polinomio.
     """
-    
+    x=0.30
+    i=0
+    result=0
+    while(i<n):
+        if (i==0):
+            result=f(x0)
+            ff=derivada(f)   
+        elif(i==1):
+            result=result+ff(x0)*(x-x0)**i
+            ff=derivada(ff)
+        else:
+            result=result+ff(x0)*(x-x0)**i/math.factorial(i)
+            ff=derivada(ff)
+        i=i+1
+        if(i==n):
+            result=result+ff(x0)*(x-x0)**i/math.factorial(i)
+
+    polinomio=result
+
     return polinomio
 
 
 if __name__ == '__main__':
-    # Pruebe aquí el polinomio de Taylor.
-    pass
+    
+    print ("el Aproximado es:"+" "+str(polinomio_taylor(f,0,4)))
