@@ -59,4 +59,4 @@ if __name__ == '__main__':
     # Pruebe aquí el polinomio de Taylor.
     f = lambda x: math.sin(x)
     x = 0.3
-    print("El valor aproximado es de:"polinomio_taylor(f, 0, 4)(x))
+    print("El valor aproximado es de:", polinomio_taylor(f, 0, 4)(x))
