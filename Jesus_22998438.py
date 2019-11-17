@@ -32,10 +32,26 @@ def polinomio_taylor(f, x0, n):
     x0: punto centro del polinomio.
     n: grado del polinomio.
     """
+    def polinomio(x):
+        acum = 0
+        Df = f
+        for i in range(n+1):
+            acum += ((Df(x0))/(math.factorial(i)))*((x-x0)**(i))
+            Df = derivada(Df)
+        return acum
     
     return polinomio
 
 
 if __name__ == '__main__':
-    # Pruebe aquí el polinomio de Taylor.
-    pass
+    er = lambda a,b: math.fabs((a-b)/a)
+
+    g = lambda x: math.log(x)    
+
+    t = polinomio_taylor(g,1,4)
+
+    val = 1.2
+
+    print('Valor real:',g(val))
+    print('Valor aproximado:',t(val))
+    print('Error relativo:',er(t(val),g(val)))
