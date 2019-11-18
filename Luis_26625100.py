@@ -32,10 +32,31 @@ def polinomio_taylor(f, x0, n):
     x0: punto centro del polinomio.
     n: grado del polinomio.
     """
-    
-    return polinomio
+
+    def factorial(n):
+        if n < 2:
+            return 1
+        else:
+            return n * factorial(n-1)
+
+
+    def polynomial(x):
+        function = f(x0)
+        derv = f
+        i = 1
+
+        while i <= n:
+            derv = derivada(derv)
+            function = function + (derv(x0) * (((x - x0)**i) / factorial(i)))
+            i += 1
+
+        return function
+
+    return polynomial
 
 
 if __name__ == '__main__':
     # Pruebe aquí el polinomio de Taylor.
-    pass
+    f = lambda x: math.sin(x)
+    x = 0.3
+    print("El valor aproximado es de:", polinomio_taylor(f, 0, 4)(x))
